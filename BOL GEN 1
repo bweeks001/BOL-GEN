@@ -39,3 +39,71 @@
     <script src="script.js"></script>
 </body>
 </html>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+document.getElementById("bol-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Collect form data
+    const shipperName = document.getElementById("shipperName").value;
+    const consigneeName = document.getElementById("consigneeName").value;
+    const goodsDescription = document.getElementById("goodsDescription").value;
+    const origin = document.getElementById("origin").value;
+    const destination = document.getElementById("destination").value;
+    const shipmentDate = document.getElementById("shipmentDate").value;
+
+    // Generate BOL details
+    const bolDetails = `
+        <p><strong>Shipper:</strong> ${shipperName}</p>
+        <p><strong>Consignee:</strong> ${consigneeName}</p>
+        <p><strong>Goods Description:</strong> ${goodsDescription}</p>
+        <p><strong>Origin:</strong> ${origin}</p>
+        <p><strong>Destination:</strong> ${destination}</p>
+        <p><strong>Shipment Date:</strong> ${shipmentDate}</p>
+    `;
+
+    document.getElementById("bol-details").innerHTML = bolDetails;
+    document.getElementById("bol-output").style.display = "block";
+});
+
+// Download BOL as PDF
+function downloadPDF() {
+    const doc = new jsPDF();
+    const content = document.getElementById("bol-details").innerHTML;
+    doc.html(content, {
+        callback: function (doc) {
+            doc.save('BOL.pdf');
+        }
+    });
+}

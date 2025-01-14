@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOL Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Bill of Lading Generator</h1>
+    <form id="bol-form">
+        <label for="shipperName">Shipper Name:</label>
+        <input type="text" id="shipperName" required><br>
+
+        <label for="consigneeName">Consignee Name:</label>
+        <input type="text" id="consigneeName" required><br>
+
+        <label for="goodsDescription">Goods Description:</label>
+        <textarea id="goodsDescription" required></textarea><br>
+
+        <label for="origin">Origin:</label>
+        <input type="text" id="origin" required><br>
+
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" required><br>
+
+        <label for="shipmentDate">Shipment Date:</label>
+        <input type="date" id="shipmentDate" required><br>
+
+        <button type="submit">Generate BOL</button>
+    </form>
+
+    <div id="bol-output" style="display:none;">
+        <h2>Generated BOL</h2>
+        <div id="bol-details"></div>
+        <button onclick="downloadPDF()">Download as PDF</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
